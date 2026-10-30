@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .glow-green {
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.25);
+  }
+  .glow-text {
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+  }
+}
+
+body {
+  background-color: #0a0d14;
+  color: #cbd5e1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

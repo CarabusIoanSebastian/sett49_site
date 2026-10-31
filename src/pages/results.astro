@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const upcoming = [
+  { name: 'CSCTF 2026',  url: 'https://ctftime.org/event/3333', date: 'Nov. 6, 2026' },
+  { name: 'SmartHack',   url: null,                              date: 'Nov. 7, 2026' },
+];
+
+const achievementGroups = [
+  {
+    event: 'Cyberman26',
+    results: [
+      { label: 'Winner',    category: 'CTF',          isWin: true },
+      { label: 'Winner',    category: 'Red vs Blue',  isWin: true },
+    ],
+  },
+  {
+    event: 'Cydex 26',
+    results: [
+      { label: 'Winner',    category: 'CTF — Sea of Theft',   isWin: true },
+      { label: '2nd Place', category: 'AI Prompt Injection',  isWin: false },
+      { label: '2nd Place', category: 'Mobile Forensics',     isWin: false },
+    ],
+  },
+  {
+    event: 'Unbreakable',
+    results: [
+      { label: 'Finalist',  category: 'CTF',  isWin: false },
+    ],
+  },
+];
+
+const results2026 = [
+  { place: 34,  name: 'UniVsThreats 26 Quals CTF',      url: 'https://ctftime.org/event/3092', ctfPts: '2038.00', ratingPts: '11.326' },
+  { place: 86,  name: 'PascalCTF 2026',                 url: 'https://ctftime.org/event/2767', ctfPts: '5929.00', ratingPts: '19.500' },
+  { place: 136, name: "VishwaCTF'2026",                 url: 'https://ctftime.org/event/3197', ctfPts: '3600.00', ratingPts: '8.532'  },
+  { place: 140, name: '0xFUN CTF 2026',                 url: 'https://ctftime.org/event/3081', ctfPts: '4504.00', ratingPts: '4.278'  },
+  { place: 197, name: 'DefCamp CTF (D-CTF) 2026 Quals', url: 'https://ctftime.org/event/3392', ctfPts: '200.00',  ratingPts: '7.223'  },
+  { place: 268, name: 'LA CTF 2026',                    url: 'https://ctftime.org/event/3015', ctfPts: '1697.00', ratingPts: '11.382' },
+];
+
+const totalRating = results2026.reduce((acc, r) => acc + parseFloat(r.ratingPts), 0).toFixed(3);
+const bestPlace   = Math.min(...results2026.map(r => r.place));
+---
+
+<Layout title="Results">
+
+  <!-- Page header -->
+  <section class="mb-10">
+    <div class="text-slate-900 text-xs font-mono tracking-widest uppercase mb-4">
+      <span class="text-slate-600">$</span> cat results.log
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+      Results <span class="glow-text text-black">&amp; Events</span>
+    </h1>
+
+    <!-- Quick stats -->
+    <div class="flex flex-wrap gap-8 font-mono">
+      <div>
+        <div class="text-2xl font-black text-slate-900">{results2026.length}</div>
+        <div class="text-xs text-slate-700 uppercase tracking-widest mt-0.5">CTFtime events</div>
+      </div>
+      <div class="w-px bg-slate-200 self-stretch"></div>
+      <div>
+        <div class="text-2xl font-black text-slate-900">#{bestPlace}</div>
+        <div class="text-xs text-slate-700 uppercase tracking-widest mt-0.5">best placement</div>
+      </div>
+      <div class="w-px bg-slate-200 self-stretch"></div>
+      <div>
+        <div class="text-2xl font-black text-slate-900">{totalRating}</div>
+        <div class="text-xs text-slate-700 uppercase tracking-widest mt-0.5">total rating pts</div>
+      </div>
+      <div class="w-px bg-slate-200 self-stretch"></div>
+      <div>
+        <div class="text-2xl font-black text-slate-900">3×</div>
+        <div class="text-xs text-slate-700 uppercase tracking-widest mt-0.5">event wins</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── UPCOMING ──────────────────────────────────── -->
+  <section class="mb-14">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="font-mono text-xs font-bold text-slate-900 tracking-widest uppercase">Upcoming</span>
+      <span class="flex-1 h-px bg-slate-200"></span>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      {upcoming.map(ev => (
+        <div class="flex items-center justify-between px-5 py-4 rounded-xl border border-slate-900 bg-white group hover:bg-slate-900 transition-colors duration-200">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-slate-900 group-hover:bg-white animate-pulse"></span>
+            {ev.url ? (
+              <a
+                href={ev.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-mono font-semibold text-slate-900 group-hover:text-white text-sm hover:underline"
+              >
+                {ev.name}
+              </a>
+            ) : (
+              <span class="font-mono font-semibold text-slate-900 group-hover:text-white text-sm">{ev.name}</span>
+            )}
+          </div>
+          <span class="font-mono text-xs text-slate-600 group-hover:text-slate-300 transition-colors">{ev.date}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── 2026 SEASON ───────────────────────────────── -->
+  <section class="mb-14">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="font-mono text-xs font-bold text-slate-900 tracking-widest uppercase">2026 Season</span>
+      <span class="flex-1 h-px bg-slate-200"></span>
+      <a
+        href="https://ctftime.org/team/422471#rating_2026"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs text-slate-600 hover:text-black transition-colors"
+      >
+        CTFtime ↗
+      </a>
+    </div>
+
+    <!-- Local & Special achievements grouped by event -->
+    <div class="mb-10">
+      <p class="font-mono text-xs text-slate-700 uppercase tracking-widest mb-4">Local &amp; Special</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {achievementGroups.map(group => (
+          <div class="rounded-xl border border-slate-200 overflow-hidden">
+            <div class="px-5 py-3 bg-slate-900 text-white font-mono font-bold text-sm">
+              {group.event}
+            </div>
+            <div class="divide-y divide-slate-100">
+              {group.results.map(r => (
+                <div class="flex items-center justify-between px-5 py-3 bg-white hover:bg-slate-50 transition-colors">
+                  <span class="font-mono text-sm text-slate-900">{r.category}</span>
+                  <span class={`font-mono font-bold text-xs px-3 py-1 rounded-md ${
+                    r.isWin
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-800 border border-slate-200'
+                  }`}>
+                    {r.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTFtime results -->
+    <div>
+      <p class="font-mono text-xs text-slate-700 uppercase tracking-widest mb-4">CTFtime</p>
+      <div class="rounded-xl border border-slate-200 overflow-hidden">
+        <div class="grid grid-cols-12 px-5 py-3 bg-slate-900 text-white font-mono text-xs uppercase tracking-widest">
+          <div class="col-span-1">#</div>
+          <div class="col-span-7">Event</div>
+          <div class="col-span-2 text-right hidden sm:block">CTF pts</div>
+          <div class="col-span-2 text-right">Rating</div>
+        </div>
+        {results2026.map((r, i) => (
+          <div class={`grid grid-cols-12 px-5 py-3.5 font-mono items-center hover:bg-slate-50 transition-colors ${i < results2026.length - 1 ? 'border-b border-slate-100' : ''} bg-white`}>
+            <div class="col-span-1 font-black text-sm text-slate-900">
+              {r.place}
+            </div>
+            <div class="col-span-7 pr-4">
+              <a
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-slate-800 hover:text-black hover:underline transition-colors"
+              >
+                {r.name}
+              </a>
+            </div>
+            <div class="col-span-2 text-right text-slate-700 text-sm hidden sm:block">{r.ctfPts}</div>
+            <div class="col-span-2 text-right font-semibold text-slate-900 text-sm">{r.ratingPts}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

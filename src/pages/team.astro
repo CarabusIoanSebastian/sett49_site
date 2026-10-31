@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// TODO: actualizează rolurile membrilor cu specializările reale
+const members = [
+  { handle: 'zetef',           role: '???',  ctftime: 'https://ctftime.org/user/121453' },
+  { handle: 'm68k',            role: '???',  ctftime: 'https://ctftime.org/user/189835' },
+  { handle: 'ivanbogdan794',   role: '???',  ctftime: 'https://ctftime.org/user/234305' },
+  { handle: 'MrRaven07',       role: '???',  ctftime: 'https://ctftime.org/user/250338' },
+  { handle: 'coswin',          role: '???',  ctftime: 'https://ctftime.org/user/252476' },
+  { handle: 'radu.rimbet17',   role: '???',  ctftime: 'https://ctftime.org/user/253859' },
+  { handle: 'mihai21681',      role: '???',  ctftime: 'https://ctftime.org/user/255370' },
+  { handle: 'sayan9615_',      role: '???',  ctftime: 'https://ctftime.org/user/256731' },
+  { handle: 'mario-r_1ng',     role: '???',  ctftime: 'https://ctftime.org/user/257179' },
+  { handle: 'Bib_The_Buildar', role: '???',  ctftime: 'https://ctftime.org/user/261055' },
+  { handle: 'sebi025',         role: '???',  ctftime: null },
+];
+
+function getInitials(handle: string): string {
+  return handle.replace(/[^a-zA-Z0-9]/g, '').slice(0, 2).toUpperCase();
+}
+
+const avatarStyles = [
+  'border-slate-400 text-slate-800',
+  'border-slate-500 text-slate-700',
+  'border-slate-300 text-slate-900',
+  'border-slate-400 text-slate-800',
+  'border-slate-500 text-slate-700',
+  'border-slate-300 text-slate-800',
+];
+---
+
+<Layout title="Team">
+  <!-- Header secțiune -->
+  <section class="mb-12">
+    <div class="flex items-center gap-2 text-slate-900 text-xs font-mono tracking-widest uppercase mb-4">
+      <span class="text-slate-600">$</span> cat /etc/team.conf
+    </div>
+
+    <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
+      The <span class="glow-text text-black">Operators</span>
+    </h1>
+    
+
+    <!-- Stats bar -->
+    <div class="flex flex-wrap gap-6 font-mono text-sm">
+      <div class="flex items-center gap-2">
+        <span class="text-slate-600">//</span>
+        <span class="text-slate-900 font-bold">{members.length}</span>
+        <span class="text-slate-600">membri </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-slate-600">//</span>
+        <span class="text-slate-900 font-bold">sett49</span>
+        <span class="text-slate-600">pe CTFtime</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid membrii -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    {members.map((member, i) => {
+      const style = avatarStyles[i % avatarStyles.length];
+      const initials = getInitials(member.handle);
+      return (
+        <div class="group p-5 rounded-xl border border-slate-200 bg-white hover:border-slate-400 hover:shadow-sm transition-all duration-200">
+          <div class="flex items-start gap-4">
+            <!-- Avatar -->
+            <div class={`flex-shrink-0 w-12 h-12 rounded-lg border-2 ${style} bg-slate-50 flex items-center justify-center font-mono font-bold text-sm`}>
+              {initials}
+            </div>
+
+            <!-- Info -->
+            <div class="flex-1 min-w-0">
+              <!-- Handle -->
+              <div class="font-mono font-bold text-slate-900 text-sm truncate">
+                <span class="text-slate-500">&gt;</span> {member.handle}<span class="animate-pulse text-slate-900">_</span>
+              </div>
+
+              <!-- Rol -->
+              <div class="text-xs text-slate-600 font-mono mt-1">
+                <span class="text-slate-400">// </span>{member.role}
+              </div>
+
+              <!-- Links -->
+              <div class="flex items-center gap-3 mt-3">
+                {member.ctftime ? (
+                  <a
+                    href={member.ctftime}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-700 hover:text-black transition-colors border border-slate-200 hover:border-slate-500 px-2.5 py-1 rounded-md"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    CTFtime
+                  </a>
+                ) : (
+                  <span class="inline-flex items-center text-xs font-mono text-slate-400 px-2.5 py-1">
+                    — no profile
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </section>
+</Layout>

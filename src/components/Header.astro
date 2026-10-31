@@ -1,30 +1,30 @@
 ---
 const navItems = [
-  { name: '~/home', path: '/' },
-  { name: '~/about', path: '/about' },
-  { name: '~/team', path: '/team' },
-  { name: '~/writeups', path: '/writeups' },
+  { name: '~/home',     path: '/' },
+  { name: '~/about',   path: '/about' },
+  { name: '~/team',    path: '/team' },
+  { name: '~/results', path: '/results' },
 ];
 ---
 
-<header class="border-b border-slate-800 bg-[#0a0d14]/90 backdrop-blur-md sticky top-0 z-50">
+<header class="border-b border-white/10 bg-black sticky top-0 z-50">
   <div class="container mx-auto px-4 max-w-6xl h-20 flex items-center justify-between">
     <!-- Logo & Brand -->
     <a href="/" class="flex items-center gap-3 group">
-      <div class="w-10 h-10 rounded-full bg-white/10 p-0.5 border border-emerald-500/30 group-hover:border-emerald-400 transition-all overflow-hidden">
+      <div class="w-10 h-10 rounded-full bg-white/10 p-0.5 border border-white/20 group-hover:border-white/50 transition-all overflow-hidden">
         <img src="/assets/logo.png" alt="sett49 logo" class="w-full h-full object-contain" />
       </div>
-      <div class="font-bold text-xl tracking-wider text-white group-hover:text-emerald-400 transition-colors">
-        <span class="text-emerald-400">&gt;</span> sett49<span class="animate-pulse text-emerald-400">_</span>
+      <div class="font-bold text-xl tracking-wider text-white group-hover:text-slate-200 transition-colors">
+        <span class="text-slate-500">&gt;</span> sett49<span class="animate-pulse text-white">_</span>
       </div>
     </a>
 
     <!-- Navigare -->
     <nav class="flex items-center gap-6 text-sm font-mono">
       {navItems.map(item => (
-        <a 
-          href={item.path} 
-          class="text-slate-400 hover:text-emerald-400 transition-colors"
+        <a
+          href={item.path}
+          class="text-slate-400 hover:text-white transition-colors"
         >
           {item.name}
         </a>

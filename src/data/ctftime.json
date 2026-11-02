@@ -1,0 +1,108 @@
+{
+  "lastSyncedAt": "2026-11-02T19:30:27.339Z",
+  "teamId": "422471",
+  "teamUrl": "https://ctftime.org/team/422471",
+  "members": [
+    {
+      "id": "121453",
+      "handle": "zetef",
+      "ctftime": "https://ctftime.org/user/121453"
+    },
+    {
+      "id": "189835",
+      "handle": "m68k",
+      "ctftime": "https://ctftime.org/user/189835"
+    },
+    {
+      "id": "234305",
+      "handle": "ivanbogdan794",
+      "ctftime": "https://ctftime.org/user/234305"
+    },
+    {
+      "id": "250338",
+      "handle": "MrRaven07",
+      "ctftime": "https://ctftime.org/user/250338"
+    },
+    {
+      "id": "252476",
+      "handle": "coswin",
+      "ctftime": "https://ctftime.org/user/252476"
+    },
+    {
+      "id": "253859",
+      "handle": "radu.rimbet17",
+      "ctftime": "https://ctftime.org/user/253859"
+    },
+    {
+      "id": "255370",
+      "handle": "mihai21681",
+      "ctftime": "https://ctftime.org/user/255370"
+    },
+    {
+      "id": "256731",
+      "handle": "sayan9615_",
+      "ctftime": "https://ctftime.org/user/256731"
+    },
+    {
+      "id": "257179",
+      "handle": "mario-r_1ng",
+      "ctftime": "https://ctftime.org/user/257179"
+    },
+    {
+      "id": "261055",
+      "handle": "Bib_The_Buildar",
+      "ctftime": "https://ctftime.org/user/261055"
+    }
+  ],
+  "upcoming": [
+    {
+      "name": "CSCTF 2026",
+      "date": "Nov. 6, 2026, 1 p.m.",
+      "url": "https://ctftime.org/event/3333"
+    }
+  ],
+  "results": [
+    {
+      "place": 34,
+      "name": "UniVsThreats 26 Quals CTF",
+      "url": "https://ctftime.org/event/3092",
+      "ctfPts": "2038.00",
+      "ratingPts": "11.326"
+    },
+    {
+      "place": 86,
+      "name": "PascalCTF 2026",
+      "url": "https://ctftime.org/event/2767",
+      "ctfPts": "5929.00",
+      "ratingPts": "19.500"
+    },
+    {
+      "place": 136,
+      "name": "VishwaCTF'2026",
+      "url": "https://ctftime.org/event/3197",
+      "ctfPts": "3600.00",
+      "ratingPts": "8.532"
+    },
+    {
+      "place": 140,
+      "name": "0xFUN CTF 2026",
+      "url": "https://ctftime.org/event/3081",
+      "ctfPts": "4504.00",
+      "ratingPts": "4.278"
+    },
+    {
+      "place": 197,
+      "name": "DefCamp Capture the Flag (D-CTF) 2026 Quals",
+      "url": "https://ctftime.org/event/3392",
+      "ctfPts": "200.00",
+      "ratingPts": "7.223"
+    },
+    {
+      "place": 268,
+      "name": "LA CTF 2026",
+      "url": "https://ctftime.org/event/3015",
+      "ctfPts": "1697.00",
+      "ratingPts": "11.382"
+    }
+  ]
+}

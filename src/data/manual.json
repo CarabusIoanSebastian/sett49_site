@@ -1,0 +1,52 @@
+{
+  "memberRoles": {
+    "zetef": "???",
+    "m68k": "???",
+    "ivanbogdan794": "???",
+    "MrRaven07": "???",
+    "coswin": "???",
+    "radu.rimbet17": "???",
+    "mihai21681": "???",
+    "sayan9615_": "???",
+    "mario-r_1ng": "???",
+    "Bib_The_Buildar": "???",
+    "sebi025": "???"
+  },
+  "extraMembers": [
+    {
+      "handle": "sebi025",
+      "ctftime": null
+    }
+  ],
+  "localUpcoming": [
+    {
+      "name": "SmartHack",
+      "url": null,
+      "date": "Nov. 7, 2026"
+    }
+  ],
+  "localAchievements": [
+    {
+      "event": "Cyberman26",
+      "results": [
+        { "label": "Winner", "category": "CTF", "isWin": true },
+        { "label": "Winner", "category": "Red vs Blue", "isWin": true }
+      ]
+    },
+    {
+      "event": "Cydex 26",
+      "results": [
+        { "label": "Winner", "category": "CTF — Sea of Theft", "isWin": true },
+        { "label": "2nd Place", "category": "AI Prompt Injection", "isWin": false },
+        { "label": "2nd Place", "category": "Mobile Forensics", "isWin": false }
+      ]
+    },
+    {
+      "event": "Unbreakable",
+      "results": [
+        { "label": "Finalist", "category": "CTF", "isWin": false }
+      ]
+    }
+  ]
+}
+

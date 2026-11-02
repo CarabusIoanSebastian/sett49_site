@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About">
+  <!-- Page Header -->
+  <section class="mb-10">
+    <div class="text-slate-900 text-xs font-mono tracking-widest uppercase mb-4">
+      <span class="text-slate-600">$</span> cat /etc/sett49.info
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+      About <span class="glow-text text-black">sett49</span>
+    </h1>
+    <p class="text-slate-700 text-base md:text-lg max-w-2xl leading-relaxed">
+      Echipa academică de securitate cibernetică și Capture The Flag a Academiei Tehnice Militare „Ferdinand I” din București.
+    </p>
+  </section>
+
+  <!-- Interactive Terminal Card -->
+  <section class="mb-12">
+    <div class="rounded-xl border border-slate-900 bg-slate-950 text-slate-100 p-5 md:p-6 font-mono shadow-sm">
+      <div class="flex items-center gap-2 mb-4 text-xs text-slate-500 border-b border-slate-800 pb-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-slate-700 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-slate-700 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-slate-700 inline-block"></span>
+        <span class="ml-2 text-slate-400">guest@sett49-box:~</span>
+      </div>
+
+      <div class="space-y-3 text-sm leading-relaxed" id="terminal-content">
+        <div>
+          <span class="text-slate-500">$</span> <span class="text-white font-semibold">whoami</span>
+          <div class="text-slate-300 mt-1 pl-4">sett49 // MTA Cybersecurity &amp; CTF Team</div>
+        </div>
+
+        <div>
+          <span class="text-slate-500">$</span> <span class="text-white font-semibold" id="dynamic-cmd"></span><span class="animate-pulse text-white font-bold">_</span>
+          <div class="text-slate-300 mt-1 pl-4 min-h-[1.5rem]" id="dynamic-output"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Povestea / Pasiunea -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
+    <div class="p-6 rounded-xl border border-slate-200 bg-white hover:border-slate-400 transition-all">
+      <div class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">// 01. DESPRE NOI</div>
+      <h2 class="text-xl font-bold text-slate-900 mb-3 font-mono">Pasiune pentru securitate cibernetică</h2>
+      <p class="text-slate-700 text-sm leading-relaxed mb-3">
+        sett49 s-a format natural, din pasiune pentru calculatoare și dorința de a înțelege cum funcționează sistemele în profunzime. Competițiile de Capture The Flag (CTF) sunt modul nostru preferat de a învăța: probleme practice, scenarii neașteptate și provocări care te obligă să gândești analitic.
+      </p>
+      <p class="text-slate-700 text-sm leading-relaxed">
+        De la găsirea unei vulnerabilități într-o aplicație până la disecția unui binar la nivel de instrucțiuni de asamblare, fiecare concurs aduce experiență practică solidă.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-xl border border-slate-200 bg-white hover:border-slate-400 transition-all">
+      <div class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">// 02. CUM LUCRĂM</div>
+      <h2 class="text-xl font-bold text-slate-900 mb-3 font-mono">Colaborare și muncă de echipă</h2>
+      <p class="text-slate-700 text-sm leading-relaxed mb-3">
+        La un CTF de 24 sau 48 de ore, rezultatele vin din coordonare. Fiecare membru al echipei are zonele lui de interes — unii sunt axați pe binary exploitation și reversing, alții pe securitate web, criptografie sau analiză forensic.
+      </p>
+      <p class="text-slate-700 text-sm leading-relaxed">
+        Când cineva se blochează la o provocare, facem schimb de idei și căutăm soluții împreună. După fiecare concurs analizăm problemele rezolvate, facem schimb de cunoștințe și ne pregătim pentru următoarea competiție.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cadrul Academic / MTA -->
+  <section class="p-6 md:p-8 rounded-xl border border-slate-900 bg-white mb-14">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="max-w-2xl">
+        <div class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-1">// AFILIERE ACADEMICĂ</div>
+        <h2 class="text-xl md:text-2xl font-bold text-slate-900 font-mono mb-2">
+          Academia Tehnică Militară „Ferdinand I”
+        </h2>
+        <p class="text-slate-700 text-sm leading-relaxed">
+          Suntem studenți în cadrul Academiei Tehnice Militare „Ferdinand I” din București și reprezentăm academia în competiții naționale și internaționale de securitate cibernetică. Îmbinăm pregătirea inginerească din facultate cu experiența practică acumulată în competiții.
+        </p>
+      </div>
+
+      <div class="flex-shrink-0">
+        <a
+          href="https://mta.ro"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg border border-black bg-white hover:bg-slate-100 hover:shadow-md hover:-translate-y-0.5 text-black font-mono text-sm font-semibold transition-all inline-block"
+        >
+          mta.ro ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Domenii de interes -->
+  <section class="mb-14">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs font-bold text-slate-900 tracking-widest uppercase">// Domenii</span>
+      <span class="flex-1 h-px bg-slate-200"></span>
+    </div>
+
+    <div class="flex flex-wrap gap-3 font-mono">
+      {[
+        'Binary Exploitation (Pwn)',
+        'Reverse Engineering',
+        'Web Security',
+        'Applied Cryptography',
+        'Digital Forensics',
+        'Network Analysis',
+        'Hardware & IoT',
+        'OSINT'
+      ].map(tag => (
+        <span class="px-4 py-2 rounded-lg border border-black bg-white text-black font-semibold text-sm hover:bg-slate-100 hover:shadow-md hover:-translate-y-0.5 transition-all cursor-default">
+          &gt; {tag}
+        </span>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Terminal typewriter animation
+  const commands = [
+    {
+      cmd: 'cat /etc/status',
+      output: 'Active | Training and preparing for upcoming CTFs'
+    },
+    {
+      cmd: 'git log -1 --pretty=format:"%s"',
+      output: 'analyzing. exploiting. securing.'
+    },
+    {
+      cmd: 'uptime',
+      output: 'up 24/7, tracking flags and building solutions'
+    }
+  ];
+
+  let currentIdx = 0;
+  const cmdElem = document.getElementById('dynamic-cmd');
+  const outElem = document.getElementById('dynamic-output');
+
+  async function typeCommand(text: string) {
+    if (!cmdElem) return;
+    cmdElem.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      cmdElem.textContent += text[i];
+      await new Promise(r => setTimeout(r, 50));
+    }
+  }
+
+  async function eraseCommand() {
+    if (!cmdElem) return;
+    while (cmdElem.textContent && cmdElem.textContent.length > 0) {
+      cmdElem.textContent = cmdElem.textContent.slice(0, -1);
+      await new Promise(r => setTimeout(r, 25));
+    }
+  }
+
+  async function cycle() {
+    while (true) {
+      const item = commands[currentIdx];
+      await typeCommand(item.cmd);
+      await new Promise(r => setTimeout(r, 500));
+      if (outElem) outElem.textContent = item.output;
+      await new Promise(r => setTimeout(r, 3800));
+      if (outElem) outElem.textContent = '';
+      await eraseCommand();
+      await new Promise(r => setTimeout(r, 350));
+      currentIdx = (currentIdx + 1) % commands.length;
+    }
+  }
+
+  cycle();
+</script>

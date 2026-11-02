@@ -1,19 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ctftimeData from '../data/ctftime.json';
+import manualData from '../data/manual.json';
 
-// TODO: actualizează rolurile membrilor cu specializările reale
+// Combină membrii din CTFtime cu membrii adăugați manual (ex: cei fără cont încă)
+const roleMap: Record<string, string> = manualData.memberRoles || {};
+const extraMembers = manualData.extraMembers || [];
+
+const ctftimeHandles = new Set(ctftimeData.members.map(m => m.handle));
 const members = [
-  { handle: 'zetef',           role: '???',  ctftime: 'https://ctftime.org/user/121453' },
-  { handle: 'm68k',            role: '???',  ctftime: 'https://ctftime.org/user/189835' },
-  { handle: 'ivanbogdan794',   role: '???',  ctftime: 'https://ctftime.org/user/234305' },
-  { handle: 'MrRaven07',       role: '???',  ctftime: 'https://ctftime.org/user/250338' },
-  { handle: 'coswin',          role: '???',  ctftime: 'https://ctftime.org/user/252476' },
-  { handle: 'radu.rimbet17',   role: '???',  ctftime: 'https://ctftime.org/user/253859' },
-  { handle: 'mihai21681',      role: '???',  ctftime: 'https://ctftime.org/user/255370' },
-  { handle: 'sayan9615_',      role: '???',  ctftime: 'https://ctftime.org/user/256731' },
-  { handle: 'mario-r_1ng',     role: '???',  ctftime: 'https://ctftime.org/user/257179' },
-  { handle: 'Bib_The_Buildar', role: '???',  ctftime: 'https://ctftime.org/user/261055' },
-  { handle: 'sebi025',         role: '???',  ctftime: null },
+  ...ctftimeData.members.map(m => ({
+    handle: m.handle,
+    ctftime: m.ctftime,
+    role: roleMap[m.handle] || '???',
+  })),
+  ...extraMembers
+    .filter(m => !ctftimeHandles.has(m.handle))
+    .map(m => ({
+      handle: m.handle,
+      ctftime: m.ctftime,
+      role: roleMap[m.handle] || '???',
+    })),
 ];
 
 function getInitials(handle: string): string {
@@ -40,14 +47,13 @@ const avatarStyles = [
     <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
       The <span class="glow-text text-black">Operators</span>
     </h1>
-    
 
     <!-- Stats bar -->
     <div class="flex flex-wrap gap-6 font-mono text-sm">
       <div class="flex items-center gap-2">
         <span class="text-slate-600">//</span>
         <span class="text-slate-900 font-bold">{members.length}</span>
-        <span class="text-slate-600">membri </span>
+        <span class="text-slate-600">membri activi</span>
       </div>
       <div class="flex items-center gap-2">
         <span class="text-slate-600">//</span>

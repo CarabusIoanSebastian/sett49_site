@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-11-02T19:30:27.339Z",
+  "lastSyncedAt": "2026-11-04T13:56:26.034Z",
   "teamId": "422471",
   "teamUrl": "https://ctftime.org/team/422471",
   "members": [
@@ -22,6 +22,11 @@
       "id": "250338",
       "handle": "MrRaven07",
       "ctftime": "https://ctftime.org/user/250338"
+    },
+    {
+      "id": "252475",
+      "handle": "v01d_usr",
+      "ctftime": "https://ctftime.org/user/252475"
     },
     {
       "id": "252476",
@@ -52,6 +57,36 @@
       "id": "261055",
       "handle": "Bib_The_Buildar",
       "ctftime": "https://ctftime.org/user/261055"
+    },
+    {
+      "id": "275165",
+      "handle": "Linxer2006",
+      "ctftime": "https://ctftime.org/user/275165"
+    },
+    {
+      "id": "277996",
+      "handle": "sebii052",
+      "ctftime": "https://ctftime.org/user/277996"
+    },
+    {
+      "id": "278258",
+      "handle": "Horea13",
+      "ctftime": "https://ctftime.org/user/278258"
+    },
+    {
+      "id": "278259",
+      "handle": "luputeodora79",
+      "ctftime": "https://ctftime.org/user/278259"
+    },
+    {
+      "id": "278260",
+      "handle": "DariusLupu",
+      "ctftime": "https://ctftime.org/user/278260"
+    },
+    {
+      "id": "278261",
+      "handle": "oniga.ionut7",
+      "ctftime": "https://ctftime.org/user/278261"
     }
   ],
   "upcoming": [

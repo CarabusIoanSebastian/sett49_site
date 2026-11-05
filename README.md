@@ -105,30 +105,27 @@ Competițiile care nu sunt pe CTFtime (ex: *Cyberman*, *Cydex*, *SmartHack*, *Un
 
 ---
 
-## 🐳 Rulare în Docker
+## 🐳 Rulare în Docker cu Auto-Sync Săptămânal
 
-Datorită generării statice (`npm run build`), site-ul poate fi rulat într-un container Nginx minimalist, ultra-securizat:
+Containerul Docker rulează **Nginx** pentru servirea rapidă a paginilor statice și include un serviciu intern de **cron** care sincronizează automat datele de pe CTFtime o dată pe săptămână (în fiecare luni la ora 03:00) și re-generează paginile statice fără downtime.
 
-```dockerfile
-# Build stage
-FROM node:22-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
-
-# Production stage
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
+### Construire și pornire:
 
 ```bash
 docker build -t sett49-web .
-docker run -d -p 80:80 sett49-web
+docker run -d --name sett49-site -p 80:80 sett49-web
 ```
+
+### Funcționalități integrate în container:
+- **Auto-Sync săptămânal:** Cron rulează `scripts/docker-sync.sh` în fiecare luni dimineață la ora 03:00 (`0 3 * * 1`). Dacă CTFtime este temporar picat, containerul păstrează build-ul existent intact.
+- **Sincronizare manuală la cerere (fără restart container):**
+  ```bash
+  docker exec -it sett49-site /app/scripts/docker-sync.sh
+  ```
+- **Verificare loguri de sincronizare:**
+  ```bash
+  docker exec -it sett49-site cat /var/log/cron-sync.log
+  ```
 
 ---
 

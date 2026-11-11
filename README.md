@@ -105,26 +105,33 @@ Competițiile care nu sunt pe CTFtime (ex: *Cyberman*, *Cydex*, *SmartHack*, *Un
 
 ---
 
-## 🐳 Rulare în Docker cu Auto-Sync Săptămânal
+## 🐳 Rulare în Docker (Gata de producție)
 
-Containerul Docker rulează **Nginx** pentru servirea rapidă a paginilor statice și include un serviciu intern de **cron** care sincronizează automat datele de pe CTFtime o dată pe săptămână (în fiecare luni la ora 03:00) și re-generează paginile statice fără downtime.
+Containerul Docker rulează **Nginx** pentru servirea ultra-rapidă a paginilor statice și include un serviciu intern de **cron** care sincronizează automat datele de pe CTFtime de două ori pe zi (la 04:00 și 16:00) și re-generează paginile statice instant, fără downtime.
 
-### Construire și pornire:
+### Metoda 1: Cu Docker Compose (Recomandat)
+
+```bash
+docker compose up -d --build
+```
+
+### Metoda 2: Cu Docker CLI
 
 ```bash
 docker build -t sett49-web .
-docker run -d --name sett49-site -p 80:80 sett49-web
+docker run -d --name sett49-site --restart unless-stopped -p 80:80 sett49-web
 ```
 
 ### Funcționalități integrate în container:
-- **Auto-Sync săptămânal:** Cron rulează `scripts/docker-sync.sh` în fiecare luni dimineață la ora 03:00 (`0 3 * * 1`). Dacă CTFtime este temporar picat, containerul păstrează build-ul existent intact.
+- **Auto-Sync la fiecare 12 ore:** Preia automat noii membri și punctele din CTF-urile recente. Dacă CTFtime este temporar picat, containerul păstrează build-ul existent intact.
+- **Sincronizare inițială la pornire:** La fiecare pornire a containerului pe server, se descarcă automat ultimele date live.
 - **Sincronizare manuală la cerere (fără restart container):**
   ```bash
-  docker exec -it sett49-site /app/scripts/docker-sync.sh
+  docker exec -it sett49-web /app/scripts/docker-sync.sh
   ```
 - **Verificare loguri de sincronizare:**
   ```bash
-  docker exec -it sett49-site cat /var/log/cron-sync.log
+  docker exec -it sett49-web cat /var/log/cron-sync.log
   ```
 
 ---

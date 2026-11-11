@@ -62,17 +62,21 @@ async function sync() {
   const upcomingSectionMatch = html.match(/Plan to participate in CTF events[\s\S]*?<table[^>]*>([\s\S]*?)<\/table>/i);
   if (upcomingSectionMatch) {
     const upcomingTable = upcomingSectionMatch[1];
-    const upRowRegex = /<tr>\s*<td><a\s+href="\/event\/(\d+)">([^<]+)<\/a><\/td>\s*<td>([^<]+)<\/td>\s*<\/tr>/g;
-    let upMatch;
-    while ((upMatch = upRowRegex.exec(upcomingTable)) !== null) {
-      const eventId = upMatch[1];
-      const name = decodeHtml(upMatch[2]);
-      const date = decodeHtml(upMatch[3]);
-      upcoming.push({
-        name,
-        date,
-        url: `https://ctftime.org/event/${eventId}`,
-      });
+    const rows = upcomingTable.split(/<\/?tr[^>]*>/i);
+    for (const row of rows) {
+      if (!row.includes('<td')) continue;
+      const eventMatch = row.match(/<a\s+href="\/event\/(\d+)">([^<]+)<\/a>/i);
+      const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map(m => m[1]);
+      if (eventMatch && cells.length >= 2) {
+        const eventId = eventMatch[1];
+        const name = decodeHtml(eventMatch[2]);
+        const date = decodeHtml(cells[cells.length - 1]);
+        upcoming.push({
+          name,
+          date,
+          url: `https://ctftime.org/event/${eventId}`,
+        });
+      }
     }
   }
 
@@ -81,22 +85,36 @@ async function sync() {
   const ratingSectionMatch = html.match(/id="rating_\d+"[^>]*>[\s\S]*?<table[^>]*>([\s\S]*?)<\/table>/i);
   if (ratingSectionMatch) {
     const ratingTable = ratingSectionMatch[1];
-    const rowRegex = /<tr>[\s\S]*?<td[^>]*class="place"[^>]*>(\d+)<\/td>[\s\S]*?<a\s+href="\/event\/(\d+)">([^<]+)<\/a><\/td>\s*<td>([\d.]+)<\/td>\s*<td>([\d.]+)<\/td>\s*<\/tr>/g;
-    let resMatch;
-    while ((resMatch = rowRegex.exec(ratingTable)) !== null) {
-      const place = parseInt(resMatch[1], 10);
-      const eventId = resMatch[2];
-      const name = decodeHtml(resMatch[3]);
-      const ctfPts = parseFloat(resMatch[4]).toFixed(2);
-      const ratingPts = parseFloat(resMatch[5]).toFixed(3);
+    const rows = ratingTable.split(/<\/?tr[^>]*>/i);
+    for (const row of rows) {
+      if (!row.includes('<td')) continue;
 
-      results.push({
-        place,
-        name,
-        url: `https://ctftime.org/event/${eventId}`,
-        ctfPts,
-        ratingPts,
-      });
+      const placeMatch = row.match(/class="place"[^>]*>(\d+)</i) || row.match(/<td[^>]*>(\d+)<\/td>/i);
+      const eventMatch = row.match(/<a\s+href="\/event\/(\d+)">([^<]+)<\/a>/i);
+      const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map(m => m[1]);
+
+      if (placeMatch && eventMatch && cells.length >= 4) {
+        const place = parseInt(placeMatch[1], 10);
+        const eventId = eventMatch[1];
+        const name = decodeHtml(eventMatch[2]);
+
+        const ctfPtsRaw = cells[cells.length - 2] ? decodeHtml(cells[cells.length - 2]) : '0';
+        const ratingPtsRaw = cells[cells.length - 1] ? decodeHtml(cells[cells.length - 1]) : '0';
+
+        const ctfPtsMatch = ctfPtsRaw.match(/[\d.]+/);
+        const ratingPtsMatch = ratingPtsRaw.match(/[\d.]+/);
+
+        const ctfPts = ctfPtsMatch ? parseFloat(ctfPtsMatch[0]).toFixed(2) : '0.00';
+        const ratingPts = ratingPtsMatch ? parseFloat(ratingPtsMatch[0]).toFixed(3) : '0.000';
+
+        results.push({
+          place,
+          name,
+          url: `https://ctftime.org/event/${eventId}`,
+          ctfPts,
+          ratingPts,
+        });
+      }
     }
   }
 
@@ -124,4 +142,3 @@ sync().catch(err => {
   console.error('[sync-ctftime] ERROR:', err.message);
   process.exit(1);
 });
-

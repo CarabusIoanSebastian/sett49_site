@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-11-04T13:56:26.034Z",
+  "lastSyncedAt": "2026-11-11T13:41:05.669Z",
   "teamId": "422471",
   "teamUrl": "https://ctftime.org/team/422471",
   "members": [
@@ -64,6 +64,11 @@
       "ctftime": "https://ctftime.org/user/275165"
     },
     {
+      "id": "277837",
+      "handle": "Shiyroni",
+      "ctftime": "https://ctftime.org/user/277837"
+    },
+    {
       "id": "277996",
       "handle": "sebii052",
       "ctftime": "https://ctftime.org/user/277996"
@@ -89,13 +94,7 @@
       "ctftime": "https://ctftime.org/user/278261"
     }
   ],
-  "upcoming": [
-    {
-      "name": "CSCTF 2026",
-      "date": "Nov. 6, 2026, 1 p.m.",
-      "url": "https://ctftime.org/event/3333"
-    }
-  ],
+  "upcoming": [],
   "results": [
     {
       "place": 34,
@@ -109,7 +108,7 @@
       "name": "PascalCTF 2026",
       "url": "https://ctftime.org/event/2767",
       "ctfPts": "5929.00",
-      "ratingPts": "19.500"
+      "ratingPts": "19.525"
     },
     {
       "place": 136,
@@ -131,6 +130,13 @@
       "url": "https://ctftime.org/event/3392",
       "ctfPts": "200.00",
       "ratingPts": "7.223"
+    },
+    {
+      "place": 244,
+      "name": "CSCTF 2026",
+      "url": "https://ctftime.org/event/3333",
+      "ctfPts": "8432.00",
+      "ratingPts": "0.000"
     },
     {
       "place": 268,

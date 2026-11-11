@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    container_name: sett49-web
+    restart: unless-stopped
+    ports:
+      - "80:80"

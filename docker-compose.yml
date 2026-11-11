@@ -1,7 +1,16 @@
 services:
-  web:
-    build: .
-    container_name: sett49-web
+  sett49-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sett49-site
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "${PORT:-80}:80"
+    environment:
+      - NODE_ENV=production
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

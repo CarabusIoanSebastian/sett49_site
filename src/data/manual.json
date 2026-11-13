@@ -1,6 +1,6 @@
 {
   "memberRoles": {
-    "zetef": "???",
+    "zetef": "hack/the/planet\nrev/pwn",
     "m68k": "???",
     "ivanbogdan794": "???",
     "MrRaven07": "???",
@@ -23,14 +23,14 @@
   "localUpcoming": [],
   "localAchievements": [
     {
-      "event": "Cyberman26",
+      "event": "CyberMAN26",
       "results": [
         { "label": "Winner", "category": "CTF", "isWin": true },
         { "label": "Winner", "category": "Red vs Blue", "isWin": true }
       ]
     },
     {
-      "event": "Cydex 26",
+      "event": "CyDex26",
       "results": [
         { "label": "Winner", "category": "CTF — Sea of Theft", "isWin": true },
         { "label": "2nd Place", "category": "AI Prompt Injection", "isWin": false },
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "event": "Unbreakable",
+      "event": "Unbreakable 2026",
       "results": [
         { "label": "Finalist", "category": "CTF", "isWin": false }
       ]

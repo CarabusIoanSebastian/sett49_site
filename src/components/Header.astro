@@ -11,7 +11,7 @@ const navItems = [
 ---
 
 <header class="border-b border-white/10 bg-black sticky top-0 z-50">
-  <div class="container mx-auto px-4 max-w-6xl h-20 flex items-center justify-between">
+  <div class="container mx-auto px-4 max-w-6xl min-h-20 py-3 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2 sm:gap-4">
     <!-- Logo & Brand -->
     <a href="/" class="flex items-center gap-3 group">
       <div class="w-10 h-10 rounded-full bg-white/10 p-0.5 border border-white/20 group-hover:border-white/50 transition-all overflow-hidden">
@@ -23,7 +23,7 @@ const navItems = [
     </a>
 
     <!-- Navigare -->
-    <nav class="flex items-center gap-6 text-sm font-mono">
+    <nav class="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-mono">
       {navItems.map(item => (
         <a
           href={item.path}

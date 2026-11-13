@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ctftimeData from '../data/ctftime.json';
 import manualData from '../data/manual.json';
+import { Image } from 'astro:assets';
 
 // Combină membrii din CTFtime cu membrii adăugați manual (ex: cei fără cont încă)
 const roleMap: Record<string, string> = manualData.memberRoles || {};
@@ -23,8 +24,36 @@ const members = [
     })),
 ];
 
+// Poze de profil: pune src/assets/avatars/<handle>.(png|jpg|jpeg|webp) - fallback la initiale
+const avatarFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/avatars/*.{png,jpg,jpeg,webp}', { eager: true });
+const avatarMap: Record<string, ImageMetadata> = {};
+for (const [path, mod] of Object.entries(avatarFiles)) {
+  const name = path.split('/').pop()!.replace(/\.[^.]+$/, '');
+  avatarMap[name.toLowerCase()] = mod.default;
+}
+
 function getInitials(handle: string): string {
   return handle.replace(/[^a-zA-Z0-9]/g, '').slice(0, 2).toUpperCase();
+}
+
+// Categorii cu chip colorat. Adauga aici altele; clasele Tailwind trebuie sa fie complete (statice).
+const categoryStyles: Record<string, string> = {
+  pwn: 'bg-red-100 text-red-700 border-red-300',
+  rev: 'bg-green-100 text-green-700 border-green-300',
+  web: 'bg-blue-100 text-blue-700 border-blue-300',
+  crypto: 'bg-purple-100 text-purple-700 border-purple-300',
+  forensics: 'bg-amber-100 text-amber-700 border-amber-300',
+  osint: 'bg-cyan-100 text-cyan-700 border-cyan-300',
+  misc: 'bg-slate-100 text-slate-700 border-slate-300',
+};
+
+// "hack/the/planet\nrev/pwn" -> randuri; pe un rand, daca toate segmentele sunt categorii cunoscute -> chips, altfel text simplu
+function parseRole(role: string) {
+  return role.split('\n').map(line => {
+    const parts = line.split('/').map(p => p.trim()).filter(Boolean);
+    const isChips = parts.length > 0 && parts.every(p => categoryStyles[p.toLowerCase()]);
+    return { text: line, chips: isChips ? parts : [] };
+  });
 }
 
 const avatarStyles = [
@@ -72,8 +101,10 @@ const avatarStyles = [
         <div class="group p-5 rounded-xl border border-slate-200 bg-white hover:border-slate-400 hover:shadow-sm transition-all duration-200">
           <div class="flex items-start gap-4">
             <!-- Avatar -->
-            <div class={`flex-shrink-0 w-12 h-12 rounded-lg border-2 ${style} bg-slate-50 flex items-center justify-center font-mono font-bold text-sm`}>
-              {initials}
+            <div class={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 ${style} bg-slate-50 flex items-center justify-center font-mono font-bold text-sm`}>
+              {avatarMap[member.handle.toLowerCase()] ? (
+                <Image src={avatarMap[member.handle.toLowerCase()]} alt={member.handle} width={96} height={96} class="w-full h-full object-cover" />
+              ) : initials}
             </div>
 
             <!-- Info -->
@@ -84,8 +115,18 @@ const avatarStyles = [
               </div>
 
               <!-- Rol -->
-              <div class="text-xs text-slate-600 font-mono mt-1">
-                <span class="text-slate-400">// </span>{member.role}
+              <div class="text-xs text-slate-600 font-mono mt-1 space-y-1">
+                {parseRole(member.role).map(row => (
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    {row.chips.length ? (
+                      row.chips.map(c => (
+                        <span class={`px-2 py-0.5 rounded-md border font-semibold ${categoryStyles[c.toLowerCase()]}`}>{c}</span>
+                      ))
+                    ) : (
+                      <span><span class="text-slate-400">// </span>{row.text}</span>
+                    )}
+                  </div>
+                ))}
               </div>
 
               <!-- Links -->

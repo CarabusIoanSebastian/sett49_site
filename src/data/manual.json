@@ -20,7 +20,12 @@
     "oniga.ionut7": "???"
   },
   "extraMembers": [],
-  "localUpcoming": [],
+  "localUpcoming": [
+    {
+      "name": "USV CTF 2026",
+      "date": "Nov 19, 12:00 - Nov 20, 12:00 EET, 2026"
+    }
+  ],
   "localAchievements": [
     {
       "event": "CyberMAN26",

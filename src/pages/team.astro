@@ -135,8 +135,18 @@ const avatarStyles = [
       </div>
       <div class="flex items-center gap-2">
         <span class="text-slate-600">//</span>
-        <span class="text-slate-900 font-bold">sett49</span>
-        <span class="text-slate-600">pe CTFtime</span>
+        <a
+          href={ctftimeData.teamUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-2 hover:underline"
+        >
+          <span class="text-slate-900 font-bold">sett49</span>
+          <span class="text-slate-600 group-hover:text-slate-900 transition-colors">pe CTFtime</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-900 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>

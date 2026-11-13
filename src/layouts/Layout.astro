@@ -1,21 +1,27 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = 'sett49 - Cercul studențesc de securitate cibernetică și CTF @ Academia Tehnică Militară „Ferdinand I"' } = Astro.props;
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import logo from '../assets/logo.png';
+
+const favicon = await getImage({ src: logo, width: 64, height: 64, format: 'png' });
 ---
 
 <!doctype html>
 <html lang="ro">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="sett49 - CTF Team @ Military Technical Academy Ferdinand I" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={favicon.src} />
     <title>{title} | sett49</title>
   </head>
   <body class="min-h-screen flex flex-col justify-between selection:bg-black selection:text-white">

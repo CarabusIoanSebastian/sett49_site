@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+
 const navItems = [
   { name: '~/home',    path: '/' },
   { name: '~/about',   path: '/about/' },
@@ -12,7 +15,7 @@ const navItems = [
     <!-- Logo & Brand -->
     <a href="/" class="flex items-center gap-3 group">
       <div class="w-10 h-10 rounded-full bg-white/10 p-0.5 border border-white/20 group-hover:border-white/50 transition-all overflow-hidden">
-        <img src="/assets/logo.png" alt="sett49 logo" class="w-full h-full object-contain" />
+        <Image src={logo} alt="sett49 logo" width={80} height={80} loading="eager" class="w-full h-full object-contain" />
       </div>
       <div class="font-bold text-xl tracking-wider text-white group-hover:text-slate-200 transition-colors">
         <span class="text-slate-500">&gt;</span> sett49<span class="animate-pulse text-white">_</span>

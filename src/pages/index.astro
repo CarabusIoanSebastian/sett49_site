@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 ---
 
 <Layout title="Home">
@@ -9,7 +11,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="relative mb-8 group">
       <div class="absolute -inset-1 rounded-full bg-black/5 blur-xl group-hover:bg-black/10 transition-all duration-500"></div>
       <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-full border border-slate-200 bg-white p-2 flex items-center justify-center shadow-lg group-hover:border-slate-400 transition-all duration-300">
-        <img src="/assets/logo.png" alt="sett49 logo" class="w-full h-full object-contain" />
+        <Image src={logo} alt="sett49 logo" width={384} height={384} loading="eager" fetchpriority="high" class="w-full h-full object-contain" />
       </div>
     </div>
 
@@ -29,7 +31,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Call to Actions -->
     <div class="flex flex-wrap gap-4 justify-center font-mono">
-      <a href="https://ctftime.org/team/422471" target="_blank" class="px-6 py-3 rounded-lg bg-black hover:bg-neutral-800 text-white font-semibold transition-all shadow-sm flex items-center gap-2">
+      <a href="https://ctftime.org/team/422471" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg bg-black hover:bg-neutral-800 text-white font-semibold transition-all shadow-sm flex items-center gap-2">
         <span>CTFtime Profile</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
       </a>

@@ -162,7 +162,7 @@ const avatarStyles = [
             <!-- Avatar -->
             <div class={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 ${style} bg-slate-50 flex items-center justify-center font-mono font-bold text-sm`}>
               {avatarMap[member.handle.toLowerCase()] ? (
-                <Image src={avatarMap[member.handle.toLowerCase()]} alt={member.handle} width={96} height={96} class="w-full h-full object-cover" />
+                <Image src={avatarMap[member.handle.toLowerCase()]} alt={member.handle} width={96} height={96} loading="eager" class="w-full h-full object-cover" />
               ) : initials}
             </div>
 
@@ -215,7 +215,7 @@ const avatarStyles = [
                     aria-label="CTFtime"
                     class="inline-flex items-center text-slate-700 hover:text-black transition-colors"
                   >
-                    <img src="/assets/ctftime.png" alt="" class="w-4 h-4 rounded-sm" />
+                    <span role="img" aria-hidden="true" class="inline-block w-4 h-4 rounded-sm bg-contain bg-no-repeat bg-center bg-[url(/assets/ctftime.png)]"></span>
                   </a>
                 )}
               </div>
